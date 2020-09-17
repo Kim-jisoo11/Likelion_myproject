@@ -1,0 +1,128 @@
+{% load static %}
+
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 지수닷컴 </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<!-- Nav Bar 부분 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Jisoo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'main' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'intro' %}">Introduce</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+        </ul>
+        
+    </div>
+</nav>
+
+
+
+<br>
+<body>
+
+    <div class = "container">
+        <p class = "float-right" >
+    {% if user.is_authenticated %}
+    안녕하세요 {{user}}님!
+    <br>
+    <a href = "{% url 'logout' %}">
+        <button> 로그아웃</button>
+    </a>
+   
+    {% else %}
+
+    <a href = "{% url 'signup' %}">
+        <button> 회원가입 </button>
+    </a>
+
+    <a href = "{% url 'login' %}">
+        <button> 로그인 </button>
+    </a>
+
+    {% endif %}
+</div>
+</p>
+<br>
+<br>
+
+    <div class ="make_Blog">
+        <h5>평소에 지수에게 궁금했던 점을 질문해주세요 :)</h5><br>
+        <a href = "{% url 'create' %}">
+            <div class = "plus_btn">
+                질문하러가기!
+            </div>
+        </a>
+        <p> !! 익명 보장이 되지 않으니 상대방에게 상처가 되는 말은 자제해주세요 *^^* !! </p>
+    </div>
+
+    {% if user.is_authenticated %}
+    <a href = "{% url 'my_index' %}">
+        <button> 내가 쓴 글 보기 </button>
+    </a>
+    <a href = "{% url 'main' %}">
+        <button> 모든 글 보기 </button>
+    </a>
+    {% endif %}
+    <br>
+
+
+    
+    {% for blog in blogs %}
+    <a href = "{% url 'detail' blog.id %}">
+        <div class = "all_Blog">
+            <p> {{blog.author}}</p>
+            <p> {{blog.title}}</p>
+
+            <p> {{blog.content}}</p>
+            <p> {{blog.updated_at}}</p>
+
+        </div>
+    </a>
+
+{% endfor %}
+</body>
+</html>

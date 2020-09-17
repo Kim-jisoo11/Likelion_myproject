@@ -1,0 +1,52 @@
+body{
+    margin:0;
+    padding:50px;
+
+}
+
+.make_Blog {
+    position: relative; margin: 50px auto; width:300px; padding: 33px 25px 29px;
+    width : 600px;
+    height : 300px;
+    border : 1px solid coral;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    margin-bottom : 30px;
+    margin-top : 30px;
+    align : center;
+    
+
+}
+
+.all_Blog{
+    width : 255px;
+    height : 300px;
+    border : 1px solid coral;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    margin-bottom : 30px;
+    margin-top : 30px;
+    display : inline-flex;ㄴ
+    text-align: center;
+}
+
+.plus_btn{
+    flex : 1;
+    display : flex;
+    align-items : center ;
+    font-size : 3rem;
+}
+
+
+p{
+
+    flex:1;
+    display : flex;
+    align-items : center ;
+}
+
+a{
+    text-decoration: none;
+}
