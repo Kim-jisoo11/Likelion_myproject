@@ -21,7 +21,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> 지수닷컴 </title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 </head>
 <!-- Nav Bar 부분 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -34,7 +34,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'main' %}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'intro' %}">Introduce</a>
@@ -103,7 +103,7 @@
     <a href = "{% url 'my_index' %}">
         <button> 내가 쓴 글 보기 </button>
     </a>
-    <a href = "{% url 'main' %}">
+    <a href = "{% url 'index' %}">
         <button> 모든 글 보기 </button>
     </a>
     {% endif %}

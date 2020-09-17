@@ -7,13 +7,13 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-def main(request):
+def index(request):
     blogs = Blog.objects.all()
-    return render(request, 'main.html', {'blogs':blogs})
+    return render(request, 'index.html', {'blogs':blogs})
 
 def my_index(request):
     my_blog = Blog.objects.filter(author = request.user)
-    return render(request, 'main.html', {'blogs':my_blog})
+    return render(request, 'index.html', {'blogs':my_blog})
 
 def intro(request):
     return render(request, "intro.html")
@@ -26,7 +26,7 @@ def create(request):
             temp_form = filled_form.save(commit=False)
             temp_form.author = request.user
             temp_form.save()
-            return redirect('main')
+            return redirect('index')
     blog_form = BlogForm()
     return render(request, 'create.html',{'blog_form' : blog_form})
 
@@ -43,7 +43,7 @@ def delete(request, blog_id):
     my_blog = Blog.objects.get(pk = blog_id)
     if request.user == my_blog.author :
         myblog.delete()
-        return redirect('main')
+        return redirect('index')
 
     raise PermissionDenied
 
@@ -55,7 +55,7 @@ def update(request, blog_id):
         updated_form = BlogForm(request.POST, instance=my_blog)
         if updated_form.is_valid():
             updated_form.save()
-            return redirect('main')
+            return redirect('index')
 
     return render(request, 'create.html', {'blog_form':blog_form})
 

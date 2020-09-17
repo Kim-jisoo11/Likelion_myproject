@@ -10,7 +10,7 @@ def signup(request):
         filled_form = UserCreationForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()
-            return redirect('main')
+            return redirect('index')
     return render (request, 'signup.html', {'regi_form':regi_form})
 
 

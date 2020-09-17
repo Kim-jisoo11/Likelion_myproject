@@ -5,7 +5,7 @@ from myapp import views
 
 
 urlpatterns = [
-    path('', views.main, name = "main"),
+    path('', views.index, name = "index"),
     path('my_index/', views.my_index, name = "my_index"),
     path('create/', views.create, name = "create"),
     path('detail/<int:blog_id>', views.detail, name = "detail"),
